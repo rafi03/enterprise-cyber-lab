@@ -28,7 +28,7 @@ This project demonstrates the creation of a complete enterprise network environm
 | project-x-sec-box | 10.0.0.10 | Security Monitoring Server (Wazuh) |
 | project-x-win-client | 10.0.0.100 | Windows Workstation |
 | project-x-linux-client | 10.0.0.101 | Linux Desktop Workstation |
-| project-x-attacker | Dynamic | Kali Linux Attack Machine |
+| project-x-attacker | 10.0.0.50 | Kali Linux Attack Machine |
 
 ## Key Features
 
