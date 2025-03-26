@@ -3,14 +3,24 @@
 This guide details the setup and configuration of the Wazuh SIEM/XDR platform used for security monitoring in this lab environment.
 
 ## Table of Contents
-- [Wazuh Overview](#wazuh-overview)
-- [Deployment Architecture](#deployment-architecture)
-- [Agent Deployment](#agent-deployment)
-- [Agent Group Configuration](#agent-group-configuration)
-- [Log Collection Configuration](#log-collection-configuration)
-- [Custom Detection Rules](#custom-detection-rules)
-- [Alert Configuration](#alert-configuration)
-- [Dashboard Overview](#dashboard-overview)
+- [Security Monitoring Configuration](#security-monitoring-configuration)
+  - [Table of Contents](#table-of-contents)
+  - [Wazuh Overview](#wazuh-overview)
+  - [Deployment Architecture](#deployment-architecture)
+  - [Agent Deployment](#agent-deployment)
+    - [Windows Agent Deployment](#windows-agent-deployment)
+    - [Linux Agent Deployment](#linux-agent-deployment)
+  - [Agent Group Configuration](#agent-group-configuration)
+  - [Log Collection Configuration](#log-collection-configuration)
+    - [Windows Log Collection](#windows-log-collection)
+    - [Linux Log Collection](#linux-log-collection)
+  - [Custom Detection Rules](#custom-detection-rules)
+    - [File Access Detection](#file-access-detection)
+  - [Alert Configuration](#alert-configuration)
+    - [Failed SSH Attempts Alert](#failed-ssh-attempts-alert)
+    - [WinRM Logon Alert](#winrm-logon-alert)
+    - [Sensitive File Access Alert](#sensitive-file-access-alert)
+  - [Dashboard Overview](#dashboard-overview)
 
 ## Wazuh Overview
 
@@ -24,7 +34,7 @@ Wazuh is an open-source security platform that provides extended detection and r
 
 ## Deployment Architecture
 
-![Wazuh Architecture](images/wazuh-architecture.png)
+![Wazuh Architecture](../images/wazuh-architecture.png)
 
 The deployment consists of:
 
@@ -71,8 +81,6 @@ Two agent groups have been created to manage configurations based on operating s
 
 1. **Windows Group**: Configuration for Windows systems
 2. **Linux Group**: Configuration for Linux systems
-
-![Agent Groups](images/wazuh-agent-groups.png)
 
 ## Log Collection Configuration
 
@@ -138,7 +146,7 @@ Alerts have been configured for critical security events:
 
 ### Failed SSH Attempts Alert
 
-![SSH Alert Configuration](images/ssh-alert-config.png)
+![SSH Alert Configuration](../images/ssh-alert-config.png)
 
 Parameters:
 - Trigger condition: Count > 2
@@ -147,7 +155,7 @@ Parameters:
 
 ### WinRM Logon Alert
 
-![WinRM Alert Configuration](images/winrm-alert-config.png)
+![WinRM Alert Configuration](../images/winrm-alert-config.png)
 
 Parameters:
 - Trigger condition: Count > 1
@@ -156,7 +164,7 @@ Parameters:
 
 ### Sensitive File Access Alert
 
-![File Access Alert Configuration](images/file-access-alert.png)
+![File Access Alert Configuration](../images/file-access-alert.png)
 
 Parameters:
 - Trigger condition: Count > 1
@@ -167,7 +175,7 @@ Parameters:
 
 The Wazuh dashboard provides comprehensive visibility into security events:
 
-![Wazuh Dashboard](images/wazuh-dashboard.png)
+![Wazuh Dashboard](../images/wazuh-dashboard.png)
 
 Key dashboard components:
 - **Security Events Overview**: Summary of all security events

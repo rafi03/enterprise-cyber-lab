@@ -3,14 +3,29 @@
 This guide provides step-by-step instructions for setting up the entire cybersecurity lab environment.
 
 ## Table of Contents
-- [Prerequisites](#prerequisites)
-- [Network Configuration](#network-configuration)
-- [Domain Controller Setup](#domain-controller-setup)
-- [Windows Client Setup](#windows-client-setup)
-- [Linux Client Setup](#linux-client-setup)
-- [Email Server Setup](#email-server-setup)
-- [Security Monitoring Server Setup](#security-monitoring-server-setup)
-- [Kali Linux Setup](#kali-linux-setup)
+- [Installation Guide](#installation-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+  - [Network Configuration](#network-configuration)
+  - [Domain Controller Setup](#domain-controller-setup)
+    - [Create VM](#create-vm)
+    - [Install Windows Server](#install-windows-server)
+    - [Install AD Domain Services](#install-ad-domain-services)
+  - [Windows Client Setup](#windows-client-setup)
+    - [Create VM](#create-vm-1)
+    - [Install Windows 11](#install-windows-11)
+  - [Linux Client Setup](#linux-client-setup)
+    - [Create VM](#create-vm-2)
+    - [Install Ubuntu 22.04](#install-ubuntu-2204)
+  - [Email Server Setup](#email-server-setup)
+    - [Create VM](#create-vm-3)
+    - [Install Ubuntu Server 22.04](#install-ubuntu-server-2204)
+  - [Security Monitoring Server Setup](#security-monitoring-server-setup)
+    - [Create VM](#create-vm-4)
+    - [Install Ubuntu 22.04](#install-ubuntu-2204-1)
+  - [Kali Linux Setup](#kali-linux-setup)
+    - [Create VM](#create-vm-5)
+    - [Install Kali Linux](#install-kali-linux)
 
 ## Prerequisites
 
@@ -33,7 +48,16 @@ This guide provides step-by-step instructions for setting up the entire cybersec
    - Enable DHCP: Yes
    - DHCP range: 10.0.0.100 - 10.0.0.200
 
-![VirtualBox Network Configuration](images/network-config.png)
+All virtual machines are connected to the NAT Network "project-x-nat" (10.0.0.0/24) with the following IP configurations:
+
+| VM Name | IP Address | Subnet Mask | Default Gateway | DNS Server | Function |
+|---------|------------|-------------|-----------------|------------|----------|
+| project-x-dc | 10.0.0.5 | 255.255.255.0 | 10.0.0.1 | 10.0.0.5 | Domain Controller |
+| project-x-email-svr | 10.0.0.8 | 255.255.255.0 | 10.0.0.1 | 10.0.0.5 | Email Server |
+| project-x-sec-box | 10.0.0.10 | 255.255.255.0 | 10.0.0.1 | 10.0.0.5 | Security Server (Wazuh) |
+| project-x-win-client | 10.0.0.100 | 255.255.255.0 | 10.0.0.1 | 10.0.0.5 | Windows Client |
+| project-x-linux-client | 10.0.0.101 | 255.255.255.0 | 10.0.0.1 | 10.0.0.5 | Linux Client |
+| project-x-attacker | 10.0.0.50 | 255.255.255.0 | 10.0.0.1 | 10.0.0.5 | Attack Machine |
 
 ## Domain Controller Setup
 
@@ -57,7 +81,7 @@ This guide provides step-by-step instructions for setting up the entire cybersec
    - Default gateway: 10.0.0.1
    - DNS server: 10.0.0.5
 
-![Static IP Configuration](images/dc-static-ip.png)
+![Static IP Configuration](../images/dc-static-ip.png)
 
 ### Install AD Domain Services
 
@@ -70,7 +94,7 @@ This guide provides step-by-step instructions for setting up the entire cybersec
    - Create new forest: `corp.project-x-dc.com`
    - Set DSRM password: `@Deeboodah1!`
 
-![Active Directory Configuration](images/ad-config.png)
+![Active Directory Configuration](../images/ad-config.png)
 
 3. Configure DNS forwarders:
    - Add: 8.8.8.8

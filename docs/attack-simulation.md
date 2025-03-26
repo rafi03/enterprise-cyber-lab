@@ -57,7 +57,6 @@ Results revealed:
 - Windows client (10.0.0.100) with WinRM (ports 5985, 5986)
 - Domain controller (10.0.0.5) with multiple services including RDP (port 3389)
 
-![Nmap Scan Results](images/nmap-results.png)
 
 ## Initial Access Phase
 
@@ -71,7 +70,7 @@ The email server was found to have SSH enabled with a weak root password:
 hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://10.0.0.8
 ```
 
-![Hydra Brute Force](images/hydra-brute-force.png)
+![Hydra Brute Force](../images/hydra-brute-force.png)
 
 The attack successfully discovered the password: `november`
 
@@ -101,7 +100,7 @@ ProjectX Security Team</p>
 cat email.txt | mail -s "Important, Verify Password" janed@linux-client
 ```
 
-![Phishing Email](images/phishing-email.png)
+![Phishing Email](../images/phishing-email.png)
 
 When the user submitted credentials, they were captured on the attacker's machine:
 
@@ -135,7 +134,7 @@ After confirming valid credentials, Evil-WinRM was used to gain shell access:
 evil-winrm -i 10.0.0.100 -u Administrator -p '@Deeboodah1!'
 ```
 
-![Evil-WinRM Access](images/evil-winrm.png)
+![Evil-WinRM Access](../images/evil-winrm.png)
 
 ### 3. Domain Controller Access via RDP
 
@@ -144,6 +143,8 @@ RDP access to the domain controller:
 ```bash
 xfreerdp /v:10.0.0.5 /u:Administrator /p:@Deeboodah1! /d:corp.project-x-dc.com
 ```
+
+![RDP Access](../images/RDP.png)
 
 ## Data Exfiltration Phase
 
@@ -213,7 +214,7 @@ Testing the reverse shell:
 nc -lvnp 4444
 ```
 
-![Reverse Shell Access](images/reverse-shell.png)
+![Reverse Shell Access](../images/reverse-shell.png)
 
 ## Defense Insights
 
@@ -224,6 +225,6 @@ Throughout the attack, Wazuh detected various suspicious activities:
 - File access to sensitive documents
 - User creation events
 
-![Wazuh Alerts](images/wazuh-alerts.png)
+![Wazuh Alerts](../images/wazuh-alerts.png)
 
 These alerts demonstrate how proper security monitoring can detect attack activities at various stages of the kill chain, providing defenders with opportunities for intervention.

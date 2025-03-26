@@ -67,4 +67,4 @@ This project is meant for educational purposes only. The techniques demonstrated
 
 ## Acknowledgements
 
-This project was inspired by various cybersecurity training labs and adapted for educational purposes.
+This project was created by following the ["Build a Cybersecurity Homelab: A Practical Guide to Offense & Defense"](https://projectsecurity.teachable.com/p/build-a-cybersecurity-homelab-a-practical-guide-to-offense-defense-enterprise-101) tutorial by Grant Collins. The original guide provided the foundational concepts and steps, which I implemented and documented in this repository.
